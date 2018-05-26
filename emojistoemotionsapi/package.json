@@ -4,7 +4,10 @@
   "description": "",
   "author": "emojistoemotions <setoandrews@gmail.com>",
   "main": "functions/__main__.js",
-  "dependencies": {},
+  "dependencies": {
+    "lib": "^3.0.2",
+    "mongoose": "^5.1.2"
+  },
   "private": true,
   "stdlib": {
     "build": "faaslang",
