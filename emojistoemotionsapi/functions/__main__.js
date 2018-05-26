@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 
 module.exports = async (unicode, context) => {
+
   var emojiSchema = mongoose.Schema({
     "unicode": String,
     "nickname": String,
@@ -27,13 +28,21 @@ module.exports = async (unicode, context) => {
     "valence": Number
   });
 
+
+
+
   var emoji = mongoose.model('emoji', emojiSchema);
 
   var url = "mongodb://seto:123@ds235860.mlab.com:35860/emojistoemotionsdatabase";
-
-  await mongoose.connect(url);
-  emoji.find({
-      "unicode": unicode
-  });
-
+  return mongoose.connect(url)
+    .then(()=>{
+        console.log(emoji)
+          return emoji.emojicollection.find({"unicode": "U+1F600"},(err, mymodels)=> {
+        if (err){
+          console.log("error",err);
+        }
+        console.log("-----------------------", mymodels);
+        return mymodels
+      });
+    })
 };
